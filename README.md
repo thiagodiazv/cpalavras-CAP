@@ -1,2 +1,2 @@
-# ca-a-palavras-CAP
+# cpalavras-CAP
 partiu fritar em CAP

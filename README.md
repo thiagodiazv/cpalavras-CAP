@@ -1,7 +1,7 @@
 # caça palavras CAP
 partiu fritarr!
 
-não esqueçam de fazer a documentação das funções
+*não esqueçam de fazer a documentação das funções
 
 precisamos de
 

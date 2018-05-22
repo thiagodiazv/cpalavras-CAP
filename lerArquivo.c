@@ -11,24 +11,35 @@ char lista[100][100];
 //prototipo
 void lerArquivo();
 void imprimir();
+void dimencoes();
 
 //funcao main
 int main(){
 
+    dimencoes();
     lerArquivo();
 
     return 0;
 }
 
+
 //documentacao funcao
 //------------
-void lerArquivo(){
-
+void dimencoes(){
     //ler tamanho da matriz
     printf("Informe o numero de linhas: ");
     scanf("%d", &nLinhas);
     printf("Informe o numero de colunas: ");
     scanf("%d", &nColunas);
+    //numero de palavras
+    printf("Informe o numero de palavras: ");
+    scanf("%d", &nPalavras);
+}
+
+
+//documentacao funcao
+//------------
+void lerArquivo(){    
 
     //contadores
     int i, j;
@@ -45,9 +56,6 @@ void lerArquivo(){
     }
     fclose(arquivoX);
 
-    //numero de palavras
-    printf("Informe o numero de palavras: ");
-    scanf("%d", &nPalavras);
     
     //ler lista de palavras
     nome = "palavras.txt";

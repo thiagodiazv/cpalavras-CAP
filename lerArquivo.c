@@ -1,63 +1,79 @@
 #include <stdio.h>
 #include <string.h>
 
+//variaveis globais
+int nPalavras;
+int nColunas, nLinhas;
+char matriz[100][100];
+char lista[100][100];
+
+
+//prototipo
+void imprimir();
+
+//funcao main
 int main(){
 
-//ler tamanho da matriz
-    int nColunas, nLinhas;
-    printf("Informe o numero de linhas:");
+    //ler tamanho da matriz
+    printf("Informe o numero de linhas: ");
     scanf("%d", &nLinhas);
-    printf("Informe o numero de colunas:");
+    printf("Informe o numero de colunas: ");
     scanf("%d", &nColunas);
-    
-//ler lista de palavras
-    char lista[30][50];
 
-    int i, j, c=0;
-    
-    FILE *arquivo1;
+    //contadores
+    int i, j;
 
-    char *nome = "palavras.txt";
-
-    arquivo1 = fopen(nome, "r");
-
-    while(!feof(arquivo1)){
-        fscanf(arquivo1, "%s", &lista[c++]);
-    }
-
-    for(i=0; i<c; i++){
-        printf("%s\n", lista[i]);
-    }
-
-    fclose(arquivo1);
-
-
-printf("\n\n\n");
-//ler matriz
-
-
-    char matriz[100][100];
-
-    FILE *arquivo2;
-
-    nome = "matriz.txt";
-
-    arquivo2 = fopen(nome, "r");
+    //ler matriz
+    FILE *arquivoX;
+    char *nome = "matriz.txt";
+    arquivoX = fopen(nome, "r");
 
     for(i=0; i<nLinhas; i++){
         for(j=0; j<nColunas; j++){
-            fscanf(arquivo2 ,"%c", &matriz[i][j]);
+            fscanf(arquivoX ,"%c", &matriz[i][j]);
         }
     }
+    fclose(arquivoX);
+
+
+    //numero de palavras
+    printf("Informe o numero de palavras: ");
+    scanf("%d", &nPalavras);
+    
+    //ler lista de palavras
+    nome = "palavras.txt";
+    arquivoX = fopen(nome, "r");
+    int c=0;
+
+    while(!feof(arquivoX)){
+        fscanf(arquivoX, "%s", &lista[c++]);
+    }
+    fclose(arquivoX);
+
+    //imprimir arquivos
+    printf("\n");
+    imprimir();
+
+    return 0;
+}
+
+//documentacao funcao
+//------------
+void imprimir(){
+
+    int i, j;
 
     for(i=0; i<nLinhas; i++){
         for(j=0; j<nColunas; j++){
             printf("%c%c", matriz[i][j], j==nColunas-1?'\n':' ');
         }
     }
+    
+    printf("\n");
 
-    fclose(arquivo2);
+    for(i=0; i<nPalavras; i++){
+        printf("%s\n", lista[i]);
+    }
 
-
-    return 0;
+    return;
 }

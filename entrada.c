@@ -13,8 +13,8 @@ int main(){
 }
 
 
-//documentacao
-
+//documentacao funcao
+//------------
 void start(){
 
     int opcao;

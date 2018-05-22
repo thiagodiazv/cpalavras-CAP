@@ -9,10 +9,20 @@ char lista[100][100];
 
 
 //prototipo
+void lerArquivo();
 void imprimir();
 
 //funcao main
 int main(){
+
+    lerArquivo();
+
+    return 0;
+}
+
+//documentacao funcao
+//------------
+void lerArquivo(){
 
     //ler tamanho da matriz
     printf("Informe o numero de linhas: ");
@@ -35,7 +45,6 @@ int main(){
     }
     fclose(arquivoX);
 
-
     //numero de palavras
     printf("Informe o numero de palavras: ");
     scanf("%d", &nPalavras);
@@ -54,8 +63,9 @@ int main(){
     printf("\n");
     imprimir();
 
-    return 0;
+    return;
 }
+
 
 //documentacao funcao
 //------------

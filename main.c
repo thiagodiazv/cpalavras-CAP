@@ -4,12 +4,8 @@
 #include <time.h>
 
 //variáveis globais
-int nPalavras;
-int nColunas, nLinhas;
-char matriz[100][100];
-char lista[100][100];
-
-
+int nColunas, nLinhas, nPalavras;
+char matriz[100][100], lista[100][100];
 
 //prototipo
 void lerArquivo();
@@ -24,16 +20,20 @@ void aleat();
 int main(int argc, char *argv[]){
 
     int x;
-    x=start();    
-    dimencoes();
-    printf("\nstart = %d\n", x);
+    x=start();
+    printf("\nopcao escolida = %d\n\n", x);   
+    dimencoes();    
 
     if(x==0){
         lerArquivo();
         imprimir();
     }
-    else if (x==1){
+    else if(x==1){
         aleat();
+        imprimir();
+    }
+    else if(x==2){
+        printf("nao esta feita kkkkk\n");
     }
 
     return 0;
@@ -152,12 +152,18 @@ void aleat(){
         }
     }
 
+    for(i=0; i<nPalavras; i++){
+        for(j=0; j<5; j++){
+            strcat(lista[i], (rand()%26)+(65));
+        }
+    }
+/*
     for(i=0; i<nLinhas; i++){
         for(j=0; j<nColunas; j++){
             printf("%c%c", matriz[i][j], j==nColunas-1?'\n':' ');
         }
     }
-
+*/
     return;
 }
 

@@ -3,11 +3,13 @@ partiu fritarr!
 
 *não esqueçam de fazer a documentação das funções
 
-precisamos de
+precisamos de:
 
-  -uma entrada
+  -um inicio (interface)
   
-  -rand()
+  -dimensoes
+  
+  -aleatorio
   
   -entrar manualmente
   

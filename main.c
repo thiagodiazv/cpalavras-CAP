@@ -21,7 +21,7 @@ typedef struct{
 
 //prototipo
 int start();
-infos dimencoes(int, int, int);
+void subDimencoes();
 void lerArquivo();
 void imprimir();
 void aleat();
@@ -32,15 +32,20 @@ void mecanismo();
 int main(int argc, char *argv[]){
 
     //variáveis locais
-    int nColunas, nLinhas, nPalavras;
+    //int nColunas, nLinhas, nPalavras;
     char matriz[100][100], lista[100][100];
     char vetorzaum[1000000];
 
     int x=start();
-    printf("\nopcao escolida = %d\n\n", x); 
 
-    infos Mat = dimencoes();
-    printf("\n%d - %d - %d\n\n", Mat.nLinhas, Mat.nColunas, Mat.nPalavras); 
+    printf("\nopcao escolida = %d\n\n", x); 
+    
+    infos val;
+
+    subDimencoes(&val);
+
+    printf("\nnLinhas %d\nnColunas %d\nnPalavras %d\n\n", val.nLinhas, val.nColunas, val.nPalavras); 
+
 
     if(x==0){
         //aleat();
@@ -86,21 +91,18 @@ int start(){
 //Objetivo: 
 //Parâmetros formais
 //-nome1:(função do parametro; entrada e/ou saída)
-infos dimencoes(int x, int y, int z){
+void subDimencoes(infos *p){
     //ler tamanho da matriz
     printf("Informe o numero de linhas: ");
-    scanf("%d", &x);
+    scanf("%d", &p->nLinhas);
     printf("Informe o numero de colunas: ");
-    scanf("%d", &y);
+    scanf("%d", &p->nColunas);
     //numero de palavras
     printf("Informe o numero de palavras: ");
-    scanf("%d", &z);
+    scanf("%d", &p->nPalavras);
 
-    dimencoes.nLinhas = x;
-    dimencoes.nColunas = y;
-    dimencoes.nPalavras = x;
-
-    return dimencoes;
+    
+    return;
 }
 
 /*

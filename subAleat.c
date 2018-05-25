@@ -49,12 +49,12 @@ void imprimir(){
     int i, j;
     printf("\n");
 
-    for(i=0; i<p-nLinhas; i++){
-        for(j=0; j<p-nColunas; j++){
-            printf("%c%c", matriz[i][j], j==p-nColunas-1?'\n':' ');
+    for(i=0; i<nLinhas; i++){
+        for(j=0; j<nColunas; j++){
+            printf("%c%c", matriz[i][j], j==nColunas-1?'\n':' ');
         }
     }
-    for(i=0; i<p-nPalavras; i++){
+    for(i=0; i<nPalavras; i++){
         printf("%s\n", lista[i]);
     }
 

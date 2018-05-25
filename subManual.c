@@ -2,31 +2,31 @@
 #include <string.h>
 
 int main() {
-    int MAX_COLUNAS, MAX_LINHAS;
+    int nColunas, nLinhas;
 	int i, j, k, l = 0, s = 0, p, n=0, g=0;
     int nPalavras;
     
 
     printf("Digite o numero de linhas do seu caca palavras:\n");
-    scanf("%d", &MAX_LINHAS);
+    scanf("%d", &nLinhas);
     printf("Digite o numero de colunas do seu caca palavras:\n");
-    scanf("%d", &MAX_COLUNAS);
-	char linhasCaca[MAX_LINHAS][MAX_COLUNAS];
-	char colunasCaca[MAX_COLUNAS][MAX_LINHAS];
-	char linhasInverso[MAX_LINHAS][MAX_COLUNAS];
-	char colunasInverso[MAX_COLUNAS][MAX_LINHAS];
+    scanf("%d", &nColunas);
+	char linhasCaca[nLinhas][nColunas];
+	char colunasCaca[nColunas][nLinhas];
+	char linhasInverso[nLinhas][nColunas];
+	char colunasInverso[nColunas][nLinhas];
 
-	for (i = 0; i < MAX_LINHAS; ++i) {
+	for (i = 0; i < nLinhas; ++i) {
         printf("Digite as letras da %da linha\n", i+1);
-		for (j = 0; j < MAX_COLUNAS; ++j) {
+		for (j = 0; j < nColunas; ++j) {
 			scanf(" %c", &linhasCaca[i][j]);
 		}
 	}
 		
 	printf("\n");
 		   
-	for (i = 0; i < MAX_LINHAS; ++i) {
-		for (j = 0; j < MAX_COLUNAS; ++j){
+	for (i = 0; i < nLinhas; ++i) {
+		for (j = 0; j < nColunas; ++j){
 			colunasCaca[i][j] = linhasCaca[j][i];
 			
 		printf("\n");
@@ -35,15 +35,15 @@ int main() {
 
 	printf("\n");
 
-	for (i = 0; i < MAX_LINHAS; ++i) {
-		for (j = 0; j < MAX_COLUNAS; ++j){
+	for (i = 0; i < nLinhas; ++i) {
+		for (j = 0; j < nColunas; ++j){
 			printf("%c ", linhasCaca[i][j]);
 		}
 		printf("\n");
 	}
 	printf("\n");
-	for (i = 0; i < MAX_LINHAS; ++i) {
-		for (j = 0; j < MAX_COLUNAS; ++j){
+	for (i = 0; i < nLinhas; ++i) {
+		for (j = 0; j < nColunas; ++j){
 			printf("%c ", colunasCaca[i][j]);
 			
 		}

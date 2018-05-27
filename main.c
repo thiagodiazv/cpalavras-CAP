@@ -140,8 +140,8 @@ void subPalavras(infos *p){
 
     for(i=0; i<p->nPalavras; i++){
         
-        indL=(rand()%p->nLinhas)+1;
-        indC=(rand()%p->nColunas)+1;
+        indL=(rand()%p->nLinhas+1)+1;
+        indC=(rand()%p->nColunas+1)+1;
 
         for(j=0; j<p->nPalavras; j++){    
             if(i%2==0){
@@ -248,16 +248,16 @@ void subLinear(infos *p){
             p->vetor[cont0] = p->matriz[i][j];
             cont0++;
         }
-        //p->vetor[cont0] = '\n';
-        //cont0++;
+        p->vetor[cont0] = '\n';
+        cont0++;
     }
     for(i=0; i<p->nColunas; i++){
         for(j=0; j<p->nLinhas; j++){
             p->vetor[cont0] = p->matriz[j][i];
             cont0++;
         }
-        //p->vetor[cont0] = '\n';
-        //cont0++;
+        p->vetor[cont0] = '\n';
+        cont0++;
     }
     p->vetor[cont0] = '\0';
 

@@ -1,0 +1,133 @@
+//Thiago Diaz Virginio da Silva RA:752738
+
+#include <stdio.h>
+#include <stdbool.h>
+
+
+bool verificaHorizontal(char matriz[10][10], char palavra[20], int l, int c) {
+
+	// percorre toda a palavra
+	for (int h = 0; h < strlen(palavra); h++) {
+
+		// caso verifique que a letra atual não é igual a sua correspondente na matriz, então a palavra não é igual
+		if (palavra[h] != matriz[l][h + c])
+			return false;
+	}
+
+	// caso tenha passado por todas as letras e não encontrou nenhuma diferente, então retorna true significando um 'match'
+	return true;
+}
+
+
+bool verificaVertical(char matriz[10][10], char palavra[20], int l, int c) {
+
+	// percorre toda a palavra
+	for (int v = 0; v < strlen(palavra); v++) {
+
+		// caso verifique que a letra atual não é igual a sua correspondente na matriz, então a palavra não é igual
+		if (palavra[v] != matriz[v + l][c])
+			return false;
+	}
+
+	// caso tenha passado por todas as letras e não encontrou nenhuma diferente, então retorna true significando um 'match'
+	return true;
+}
+
+
+int main() {
+
+	// declaração da matriz 10x10 do Caça-Palavras
+	char matriz[10][10] = {
+		{ 'a', 'b','c','d','e','f','g','h','i','j' },
+		{ 'a', 'b','c','m','e','f','g','h','i','j' },
+		{ 'a', 'b','c','d','e','f','g','h','i','j' },
+		{ 'a', 'b','c','d','e','f','g','h','i','j' },
+		{ 'a', 'b','c','d','e','f','g','h','i','j' },
+		{ 'a', 'b','c','d','e','f','g','h','i','j' },
+		{ 'a', 'g','a','g','o','f','g','h','i','j' },
+		{ 'a', 'a','c','d','e','f','g','h','i','j' },
+		{ 'a', 't','c','d','e','f','p','a','t','o' },
+		{ 'a', 'o','c','d','e','f','g','h','i','j' }
+	};
+
+	// declaração do array de palavras a serem encontradas na matriz
+	char palavras[10][20] = {"gato", "pato", "ganso", "marreco", "galo", "macaco", "rato", "coelho", "urubu", "cabra"};
+
+	int quantidadePalavras = sizeof(palavras) / sizeof(palavras[0]); // quantidade de palavras
+
+	char palavrasEncontradas[10][20]; // array de palavras encontradas
+	int quantidadePalavrasEncontradas = 0;
+
+	char palavrasNaoEncontradas[10][20]; // array de palavras não encontradas
+	int quantidadePalavrasNaoEncontradas = 0;
+
+	// para cada palavra
+	for (int p = 0; p < quantidadePalavras; p++) {
+
+		char *palavra = palavras[p];
+
+		// varre-se a matriz percorrendo todas as letras
+		for (int l = 0; l < 10; l++) {
+			for (int c = 0; c < 10; c++) {
+
+				char letra = matriz[l][c];
+
+				// caso a atual letra da matriz seja a primeira letra da palavra da iteração
+				if (palavra[0] == letra) {
+
+					// verifica todas as letras adjacentes tentando encontrar a palavra completa, horizontal e verticalmente
+					// caso encontre a palavra, adiciona no array de palavras encontradas
+					if (verificaHorizontal(matriz, palavra, l, c) || verificaVertical(matriz, palavra, l, c)) {
+						strncpy(palavrasEncontradas[quantidadePalavrasEncontradas], palavra, 20);
+
+						// incrementa contador para saber quantos tem
+						quantidadePalavrasEncontradas++;
+					}
+				}
+			}
+		}
+	}
+
+	// percore o array de palavras a serem encontradas para ver as que não foram encontradas
+	for (int p = 0; p < quantidadePalavras; p++) {
+		char *palavra = palavras[p];
+
+		// auxiliar para encontrar as palavras nao encontradas
+		bool encontrado = false;
+
+		// percorre o array de palavras encontradas
+		for (int pe = 0; pe < quantidadePalavrasEncontradas; pe++) {
+			char *palavraEncontrada = palavrasEncontradas[pe];
+
+			// caso uma palavra tenha sido encontrada, então atribui ao auxiliar = true
+			if (strcmp(palavraEncontrada, palavra) == 0) {
+				encontrado = true;
+				break;
+			}
+		}
+
+		if (!encontrado) {
+			// caso o auxiliar esteja false, então não encontrou a palavra, então adicione-a no array de palavras não encontradas
+			strncpy(palavrasNaoEncontradas[quantidadePalavrasNaoEncontradas], palavra, 20);
+			
+			// incrementa contador para saber quantos tem
+			quantidadePalavrasNaoEncontradas++; 
+		}
+	}
+
+	// caso não tenha-se encontrado alguma palavra, escreve em tela
+	if (quantidadePalavrasNaoEncontradas > 0) {
+		printf("Nao foram encontradas as seguintes palavras na matriz: \n");
+
+		for (int p = 0; p < quantidadePalavrasNaoEncontradas; p++) {
+			printf(" - %s\n", palavrasNaoEncontradas[p]);
+		}
+
+	// caso contrário, escreva que encontrou todas
+	} else {
+		printf("Foram encontradas todas as palavras na matriz!\n");
+	}
+
+	system("pause");
+	return 0;
+}

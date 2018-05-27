@@ -10,12 +10,12 @@ typedef struct{
     int nLinhas;
     int nPalavras;
     char matriz[100][100];
-    char matrizTransposta[100][100];
+    char transposta[100][100];
     char lista[100][100];
+    char randW[100][100];
     char vetor[1000000];
     char faltam[100][100]; 
 } infos;
-
 
 
 //prototipo
@@ -24,6 +24,7 @@ void subDimencoes();
 void subLeitura();
 void subImprimir();
 void subAleat();
+void subPalavras(); 
 void subMecanismo();
 void subManual();
 void subLinear();
@@ -34,23 +35,24 @@ int main(int argc, char *argv[]){
 
     int x=subStart();
 
-    infos val;
+    infos valores;
 
     if(x==0){
-        subDimencoes(&val);
-        subAleat(&val);
-        //subImprimir(&val);
+        subDimencoes(&valores);
+        subAleat(&valores);
+        subPalavras(&valores);
+        subImprimir(&valores);
     }
     else if(x==1){
-        subLeitura(&val);
-        subLinear(&val);
-        subMecanismo(&val);
+        subLeitura(&valores);
+        subLinear(&valores);
+        subMecanismo(&valores);
     }
     else if(x==2){
-        subDimencoes(&val);
-        subManual(&val);
-        subLinear(&val);
-        subMecanismo(&val);
+        subDimencoes(&valores);
+        subManual(&valores);
+        subLinear(&valores);
+        subMecanismo(&valores);
     }
     else{
         printf("opcao nao valida!");
@@ -62,7 +64,7 @@ int main(int argc, char *argv[]){
 
 
 
-//======================================================================================================
+//=========================================================
 
 
 
@@ -84,7 +86,7 @@ int subStart(){
 
 //Objetivo:
 //Parâmetros formais
-//-nome1:(função do parametro; entrada e/ou saída)
+//-nome1:
 void subDimencoes(infos *p){
 
     //ler tamanho da matriz
@@ -103,7 +105,7 @@ void subDimencoes(infos *p){
 
 //Objetivo: 
 //Parâmetros formais
-//-nome1:(função do parametro; entrada e/ou saída)
+//-nome1:
 void subAleat(infos *p){
 
     //contadores
@@ -116,20 +118,50 @@ void subAleat(infos *p){
             p->matriz[i][j]=(rand()%26)+(65);
         }
     }
-/*
+
     for(i=0; i<p->nLinhas; i++){
         for(j=0; j<p->nColunas; j++){
-            p->matrizTransposta[j][i]=p->matriz[i][j];
+            p->transposta[j][i]=p->matriz[i][j];
         }
     }
-*/
+
+    return;
+}
+
+
+//Objetivo:
+//Parâmetros formais
+//-nome1:
+void subPalavras(infos *p){
+
+    srand(time(NULL));
+
+    int i, j, indL, indC;
+
+    for(i=0; i<p->nPalavras; i++){
+        
+        indL=(rand()%p->nLinhas)+1;
+        indC=(rand()%p->nColunas)+1;
+
+        for(j=0; j<p->nPalavras; j++){    
+            if(i%2==0){
+                p->randW[i][j] = p->matriz[i][indL];
+                indL++;
+            }
+            else{
+                p->randW[i][j] = p->transposta[i][indC];
+                indC++;
+            }
+        }
+    }
+
     return;
 }
 
 
 //Objetivo: Ler a matriz e as palavras a partir de arquivos de texto.
 //Parâmetros formais
-//-nome1:(função do parametro; entrada e/ou saída)
+//-nome1:
 void subLeitura(infos *p){
 
     //contadores
@@ -179,7 +211,7 @@ void subLeitura(infos *p){
 
 //Objetivo:
 //Parâmetros formais
-//-nome1:(função do parametro; entrada e/ou saída)
+//-nome1:
 void subManual(infos *p){
 
     int i, j;
@@ -206,7 +238,7 @@ void subManual(infos *p){
 
 //Objetivo:
 //Parâmetros formais
-//-nome1:(função do parametro; entrada e/ou saída)
+//-nome1:
 void subLinear(infos *p){
 
     int i, j, cont0=0;
@@ -235,7 +267,7 @@ void subLinear(infos *p){
 
 //Objetivo:
 //Parâmetros formais
-//-nome1:(função do parametro; entrada e/ou saída)
+//-nome1:
 void subMecanismo(infos *p){
 
     int i, c=0, flag=1;
@@ -264,25 +296,24 @@ void subMecanismo(infos *p){
 
 //Objetivo:
 //Parâmetros formais
-//-nome1:(função do parametro; entrada e/ou saída)
+//-nome1:
 void subImprimir(infos *p){
 
     int i, j;
 
-    printf("\nMatriz de Palavras:\n");
+    printf("\nMatriz de Palavras Aleatorias:\n");
     for(i=0; i<p->nLinhas; i++){
         for(j=0; j<p->nColunas; j++){
             printf("%c%c", p->matriz[i][j], j==p->nColunas-1?'\n':' ');
         }
     }
 
-    printf("\nLista de Palavras:\n");
+    printf("\nLista de Palavras Aleatorias:\n");
     for(i=0; i<p->nPalavras; i++){
-        printf("%s\n", p->lista[i]);
+        printf("%s\n", p->randW[i]);
     }
 
     printf("\n");
 
     return;
 }
-

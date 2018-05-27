@@ -24,8 +24,6 @@ void subDimencoes();
 void subLeitura();
 void subImprimir();
 void subAleat();
-void subAleatLinear();
-void subAleatPalavras();
 void subMecanismo();
 void subManual();
 void subLinear();
@@ -42,8 +40,6 @@ int main(int argc, char *argv[]){
         subDimencoes(&val);
         subAleat(&val);
         //subImprimir(&val);
-        //subAleatLinear(&val);
-        //subAleatPalavras(&val);
     }
     else if(x==1){
         subLeitura(&val);
@@ -120,94 +116,15 @@ void subAleat(infos *p){
             p->matriz[i][j]=(rand()%26)+(65);
         }
     }
-
+/*
     for(i=0; i<p->nLinhas; i++){
         for(j=0; j<p->nColunas; j++){
             p->matrizTransposta[j][i]=p->matriz[i][j];
         }
     }
-
-    return;
-}
-
-
-/*
-//Objetivo:
-//Parâmetros formais
-//-nome1:(função do parametro; entrada e/ou saída)
-void subAleatLinear(infos *p){
-
-    int i, j;
-
-    for(i=0; i<p->nLinhas; i++){
-        for(j=0; j<p->nColunas; j++){
-            p->vetA[p->cont1] = p->matriz[i][j];
-            p->cont1++;
-        }
-        //p->vetA[p->cont1] = '\n';
-        //p->cont1++;
-    }
-    p->vetA[p->cont1] = '\0';
-
-    for(i=0; i<p->nColunas; i++){
-        for(j=0; j<p->nLinhas; j++){
-            p->vetB[p->cont2] = p->matriz[j][i];
-            p->cont2++;
-        }
-        //p->vetB[p->cont2] = '\n';
-        //p->cont2++;
-    }
-    p->vetB[p->cont2] = '\0';
-
-    for(i=0; i<p->cont1; i++){
-        printf("%c", p->vetA[i]);
-    }
-    
-    printf("\ncont1 %d // cont2 %d\n\n", p->cont1, p->cont2);
-
-    for(i=0; i<p->cont2; i++){
-        printf("%c", p->vetB[i]);
-    }
-
-    return;
-}
 */
-
-
-/*
-/Objetivo:
-//Parâmetros formais
-//-nome1:(função do parametro; entrada e/ou saída)
-void subAleatPalavras(infos *p){
-
-    int i, j, k, c=1;
-    char test[p->nPalavras + 1][10000];
-
-    srand(time(NULL));
-
-    strcpy(test[0], "PALAVRAS ALEATORIAS");
-    
-    for(i=0; i<p->nPalavras; i++){
-        if(i%2!=0){
-            for(j=0; j<p->cont1; j++){
-                strcpy((*p).vetA, test[c][j]);
-            }
-        }
-        else{
-            for(k=0; k<p->cont2; k++){
-                strcpy((*p).vetA, test[c][k]);
-            }
-        }
-        c++;
-    }
-    for(i=0; i<p->nPalavras + 1; i++){
-        printf("%s\n", test[i]);
-    }
-
     return;
 }
-
-*/
 
 
 //Objetivo: Ler a matriz e as palavras a partir de arquivos de texto.
